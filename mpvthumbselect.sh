@@ -39,7 +39,7 @@ done
 # and save it in the cache.
 echo Building thumbnails
 
-for f in *mov *mp4 *mkv *flv *webm
+for f in *mov *mp4 *mkv *webm
 do
     if [ -f "$f" ]
     then
