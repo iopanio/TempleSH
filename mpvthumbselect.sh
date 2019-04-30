@@ -59,7 +59,7 @@ do
 done
 
 # Call sxiv on the cache, so that the user can chose videos to watch.
-# Store the edited output of sxiv as an array, which can be fed into $video player.
+# Store the edited output of sxiv as an array, which can be fed into mpv.
 # This way, the entire playlist is sent to one instance of the video player,
 # instead of using something like xargs to start a new video player each time
 # the previous video player exits.
