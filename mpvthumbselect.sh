@@ -12,7 +12,7 @@
 # TODO: only use the current directory if a directory is not provided.
 
 
-cache=$HOME/.cache/movthumbs
+cache=$HOME/.cache/mpvthumbselect
 
 # https://www.youtube.com/watch?v=w_37upFE-qw
 
