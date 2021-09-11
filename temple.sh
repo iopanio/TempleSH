@@ -13,16 +13,19 @@
 
 
 cache=$HOME/.cache/templesh
+dir="$*"
+if [ -z "$*" ]; then dir="."; fi 
 
 # https://www.youtube.com/watch?v=w_37upFE-qw
 
 # Make sure that correct cache directory exists.
-mkdir -p "$cache/$PWD"
+echo $cache/$dir
+mkdir -p "$cache/$dir"
 
-# clean up any files in the cache directory that do not correspond to videos in $PWD.
+# clean up any files in the cache directory that do not correspond to videos in $dir.
 echo 'Cleaning cache.'
 
-for f in $cache/$PWD/*
+for f in $cache/$dir/*
 do
     if [ -f "$f" ]
     then
@@ -34,22 +37,22 @@ do
 done
 
 
-# Take a screenshot to be thumbnailed for each video in $PWD.
+# Take a screenshot to be thumbnailed for each video in $dir.
 # Take it from a fifth of the way through the video,
 # and save it in the cache.
 echo Building thumbnails
 
-for f in *mov *mp4 *mkv *webm
+for f in $dir/*mov *mp4 *mkv *webm
 do
     if [ -f "$f" ]
     then
-	if [ ! -f "$cache/$PWD/$f.png" ]
+	if [ ! -f "$cache/$dir/$f.png" ]
 	then  
 	    echo "Taking thumbnail for '$f'."
             sstime=$(ffmpeg -y -i "$f" 2>&1 |\
 			 awk '/Duration/ { split($2, A, ":"); print (3600*A[1] + 60*A[2] + A[3]) /5 }')
 
-	    ffmpeg -v quiet -y -ss $sstime -i "$f" -vframes 1 "$cache/$PWD/$f.png"
+	    ffmpeg -v quiet -y -ss $sstime -i "$f" -vframes 1 "$cache/$dir/$f.png"
 	fi
     fi
     #echo $time
@@ -62,5 +65,5 @@ done
 # the previous video player exits.
 declare -a playlist
 IFS=$'\n'
-playlist=($(sxiv -t -o "$cache/$PWD/" | sed 's/.png$//' | sed 's;.\+/;;'))
+playlist=($(sxiv -t -o "$cache/$dir/" | sed 's/.png$//' | sed 's;.\+/;;'))
 mpv --script-opts=autoload-disabled=yes "${playlist[@]}"
