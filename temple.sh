@@ -1,27 +1,20 @@
 #!/bin/bash
 #
 # Select videos to watch with mpv from the current directory using sxiv.
-#
 # Caches screenshots for all the videos in the current directory, and then calls
 # sxiv on the cache.
-#
 # requires: ffmpeg
 #           sxiv
 #           mpv
 #
-# TODO: only use the current directory if a directory is not provided.
-
-
 cache=$HOME/.cache/templesh
 dir="$*"
 if [ -z "$*" ]; then dir="$PWD"; fi
 
 # https://www.youtube.com/watch?v=w_37upFE-qw
-
 # Make sure that correct cache directory exists.
 echo $cache/$dir
 mkdir -p "$cache/$dir"
-
 # clean up any files in the cache directory that do not correspond to videos in $dir.
 echo 'Cleaning cache.'
 
@@ -35,14 +28,12 @@ do
 	fi
     fi
 done
-
-
 # Take a screenshot to be thumbnailed for each video in $dir.
 # Take it from a fifth of the way through the video,
 # and save it in the cache.
 echo Building thumbnails
-
-for f in $dir/*mov *mp4 *mkv *webm
+cd $dir
+for f in *mov *mp4 *mkv *webm
 do
     if [ -f "$f" ]
     then
@@ -57,7 +48,7 @@ do
     fi
     #echo $time
 done
-
+cd
 # Call sxiv on the cache, so that the user can chose videos to watch.
 # Store the edited output of sxiv as an array, which can be fed into mpv.
 # This way, the entire playlist is sent to one instance of the video player,
