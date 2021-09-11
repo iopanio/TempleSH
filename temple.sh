@@ -12,7 +12,7 @@
 # TODO: only use the current directory if a directory is not provided.
 
 
-cache=$HOME/.cache/mpvthumbselect
+cache=$HOME/.cache/templesh
 
 # https://www.youtube.com/watch?v=w_37upFE-qw
 
@@ -63,4 +63,4 @@ done
 declare -a playlist
 IFS=$'\n'
 playlist=($(sxiv -t -o "$cache/$PWD/" | sed 's/.png$//' | sed 's;.\+/;;'))
-mpv "${playlist[@]}"
+mpv --script-opts=autoload-disabled=yes "${playlist[@]}"
