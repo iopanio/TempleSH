@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Select videos to watch with mpv from the current directory using sxiv.
 #
