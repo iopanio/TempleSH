@@ -14,7 +14,7 @@
 
 cache=$HOME/.cache/templesh
 dir="$*"
-if [ -z "$*" ]; then dir="."; fi 
+if [ -z "$*" ]; then dir="$PWD"; fi
 
 # https://www.youtube.com/watch?v=w_37upFE-qw
 
