@@ -5,6 +5,6 @@ do
 	fullpath="$(pwd)/$file"
 	case "$1" in
 	"o")
-		mpv --script-opts=autoload-disabled=yes "$(echo $file | sed 's/.png/.mp4/')" ;;
+		mpv --script-opts=autoload-disabled=yes "$(echo $file | sed 's/.png/.mp4/')" & ;;
 	esac
 done
