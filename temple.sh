@@ -11,3 +11,4 @@ do
 	    ffmpeg -v quiet -y -ss $sstime -i "$f" -vframes 1 "$(echo $f | sed 's/mp4/png/')"
 	fi
 done
+sxiv $dir
