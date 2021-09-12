@@ -24,5 +24,5 @@ Pass directory to templesh, no input defaults to `$pwd`
 $ temple <your-directory-here>
 ```
 **sxiv usage**
-`Right Click` to mark file to be opened
+`L-Click` to mark **single** file and `R-Click` for **multiple** files
 `Ctrl-x +o` to open marked files with mpv
