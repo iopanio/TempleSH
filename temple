@@ -4,7 +4,7 @@ dir="$*"
 if [ -z "$*" ]; then dir="$PWD"; fi
 for f in $(find $dir -name '*.mp4' -or -name '*.webm'); do
 	if [ -f "$(echo $f | sed 's/\..*$/.jpg/')" ]; then
-		rm $(echo $f | sed 's/\..*$/.jpg/')
+		continue
 	fi
 
 	if [ ! -f "$(echo $f | sed "s/\..*$/.png/")" ]; then
