@@ -1,5 +1,6 @@
 #!/bin/bash
 
+IFS=$'\n'
 dir="$*"
 if [ -z "$*" ]; then dir="$PWD"; fi
 for f in $(find $dir -name '*.mp4' -or -name '*.webm'); do
