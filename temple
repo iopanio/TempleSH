@@ -3,14 +3,10 @@
 IFS=$'\n'
 dir="$*"
 if [ -z "$*" ]; then dir="$PWD"; fi
-for f in $(find $dir -name '*.mp4' -or -name '*.webm'); do
-	if [ -f "$(echo $f | sed 's/\..*$/.jpg/')" ]; then
-		continue
-	fi
 
-	if [ ! -f "$(echo $f | sed "s/\..*$/.png/")" ]; then
-            sstime=$(ffmpeg -y -i "$f" 2>&1 | awk '/Duration/ { split($2, A, ":"); print (3600*A[1] + 60*A[2] + A[3]) /5 }')
-	    ffmpeg -v quiet -y -ss $sstime -i "$f" -vframes 1 "$(echo $f | sed 's/\..*$/.png/')"
-	fi
+for f in $(find $dir -name '*.mp4' -or -name '*.webm'); do
+	cache="$(dirname "$f")/.cache"
+	if [ ! -d $cache ]; then mkdir $cache; fi
+	ffmpeg -v quiet -y -ss 00:00:00 -i "$f" -vframes 1 -filter:v scale="160:-1" "$cache/$(basename "$f" | sed 's/\..*$/.png/')"
 done
-sxiv -tr $dir
+find $dir -type f \( -iname \*.jpg -o -iname \*.png \) -printf '%f %p\n' | sort -nrk1,1 | cut -f 2- -d ' ' | sxiv -t -i
