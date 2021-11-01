@@ -12,16 +12,16 @@ Video file support (mp4, webm) for sxiv. Uses mpv as image and video player.
 - sxiv [https://github.com/muennich/sxiv]
 
 # Building
-Copy dotfiles and templesh to your system using
+Copy dotfiles and ```temple``` to your system using
 ```
 $ sudo chmod +x setup.sh
 $ ./setup.sh
 ```
 
 # Usage
-Pass directory to templesh, no input defaults to `$pwd`
+Pass directory to ```temple```, no input defaults to `$pwd`
 ```
-$ temple <your-directory-here>
+$ temple DIRECTORY
 ```
 **sxiv usage**
 `L-Click` to mark **single** file and `R-Click` for **multiple** files
