@@ -7,9 +7,9 @@ Video file support (mp4, webm) for sxiv. Uses mpv as image and video player.
 - Browse multimedia files (jpg, png, mp4, webm) inside sxiv
 
 # Dependencies
-- ffmpeg [https://github.com/FFmpeg/FFmpeg]
-- mpv [https://github.com/mpv-player/mpv]
-- sxiv [https://github.com/muennich/sxiv]
+- ffmpeg
+- mpv
+- sxiv
 
 # Building
 Copy dotfiles and ```temple``` to your system using
